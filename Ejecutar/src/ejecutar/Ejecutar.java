@@ -1,5 +1,5 @@
 package ejecutar;
-
+//748
 import java.util.Scanner;
 import Clases.Almacen;
 
