@@ -1,5 +1,5 @@
 package ejecutar;
-//748
+
 import java.util.Scanner;
 import Clases.Almacen;
 
@@ -23,11 +23,21 @@ public class Ejecutar {
         Almacen almacen = new Almacen();
         Scanner sc = new Scanner(System.in);
         int opcion = 0;
-        menu();
-        opcion = sc.nextInt();
-        //menu2();
-
-        while (opcion != 5) {
+        Scanner scan = new Scanner(System.in); // objeto creado para las credenciales 
+        final String user = "admin"; //declaramos el usuario "admin"
+        final String contra = "1234"; //declaramos que contraseña sera "1234"
+        int cont = 0;
+        do {
+            System.out.println("----------LOGIN----------\nINGRESE CREDENCIALES");
+            System.out.print("Usuario: ");
+            String user2 = scan.next(); // la variable de tipo cadena "user2" se ingresa por teclado y se alamacena en el objeto scan 
+            System.out.print("Contraseña: ");
+            String contra2 = scan.next(); //la variable de tipo cadena "user2" se ingresa por teclado y se alamacena en el objeto scan 
+            if (contra2.equals(contra) && user2.equals(user)) { //equals comparar
+                System.out.println("DATOS CORRECTOS\n");
+                menu();
+                opcion=sc.nextInt();
+                while (opcion != 5) {
 
             if (opcion == 1) {
                 System.out.println("Ingrese el codigo: ");
@@ -72,6 +82,18 @@ public class Ejecutar {
             menu();
             opcion = sc.nextInt();
         }
+                return;
+            } else {
+                System.out.println("¡DATOS INCORRECTOS!\n");
+
+                cont = cont + 1;
+                if (cont == 3) {
+                    System.out.println("CUENTA BLOQUEADA...");
+                    System.out.println("Intende dentro de 5 min");
+                }
+            }
+
+        } while (cont < 3);
 
     }
 }
